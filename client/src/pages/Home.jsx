@@ -96,7 +96,13 @@ const SearchButton = styled.div`
 `;
 
 const Home = () => {
-  return <div>Home</div>;
+  return <Container>
+    <SearchContainer>
+      <LocationWrapper>
+        <Title>Location</Title>
+      </LocationWrapper>
+    </SearchContainer>
+  </Container>;
 };
 
 export default Home;

@@ -39,7 +39,18 @@ const TextButton = styled.div`
 `;
 
 const SignIn = ({ setOpenAuth }) => {
-  return <div>SignIn</div>;
+  return <Container>
+    <div>
+      <Title>Welcome to Airbnb</Title>
+      <Span>please login with your details here</Span>
+    </div>
+    <div style={{display:"flex", gap:"20px", flexDirection:"column"}}>
+      <TextInput label="Email address" placeholder="Enter your email address" />
+      <TextInput label="Password" placeholder="Enter your Password" password />
+      <TextButton>Forgot Password?</TextButton>
+      <Button text="Sign in"/>
+    </div>
+  </Container>
 };
 
 export default SignIn;

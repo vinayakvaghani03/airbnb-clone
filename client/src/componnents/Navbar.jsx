@@ -89,7 +89,7 @@ const ButtonContainer = styled.div`
   }
 `;
 const MobileIcon = styled.div`
-  color: ${({ theme }) => theme.text_primary};
+  color: ${({ theme }) => theme.white};
   display: none;
   @media screen and (max-width: 768px) {
     display: flex;
@@ -142,8 +142,47 @@ const TextButton = styled.div`
   }
 `;
 
-const Navbar = () => {
-  return <div>Navbar</div>;
+const Navbar = ({ setOpenAuth, openAuth }) => {
+  const [isOpen, setIsOpen] = useState(false)
+  return (
+    <Nav>
+      <NavbarContainer>
+        <MobileIcon onClick={() => setIsOpen(!isOpen)}>
+          <MenuRounded style={{ color: "inherit" }} />
+        </MobileIcon>
+        <NavLogo>
+          <Logo src={LogoImg} />
+        </NavLogo>
+
+        {
+          isOpen && <MobileMenu isOpen={isOpen}>
+            <Navlink to="/" onClick={() => setIsOpen(!isOpen)}>Hone</Navlink>
+            <Navlink to="/properties" onClick={() => setIsOpen(!isOpen)}>Places to stay</Navlink>
+            <Navlink to="/contact" onClick={() => setIsOpen(!isOpen)}>Contact</Navlink>
+            <Navlink to="/blog" onClick={() => setIsOpen(!isOpen)}>Blog</Navlink>
+            <div style={{
+              flex: 1,
+              display: "flex",
+              gap: "12px"
+            }}>
+              <Button type="secondary" text="SignUp" small onClick={() => setOpenAuth(!openAuth)} />
+              <Button text="SignIn" small onClick={() => setOpenAuth(!openAuth)} />
+            </div>
+          </MobileMenu>
+        }
+        <NavItems>
+          <Navlink to="/">Home</Navlink>
+          <Navlink to="/properties">Places to stay</Navlink>
+          <Navlink to="/contact">Contact</Navlink>
+          <Navlink to="/blog">Blog</Navlink>
+        </NavItems>
+
+        <ButtonContainer>
+          <Button type="secondary" text="SignIn" small onClick={() => setOpenAuth(!openAuth)} />
+        </ButtonContainer>
+      </NavbarContainer>
+    </Nav>
+  )
 };
 
 export default Navbar;
