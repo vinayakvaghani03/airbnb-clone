@@ -139,8 +139,32 @@ const Percent = styled.div`
   color: green;
 `;
 
-const PropertyCard = () => {
-  return <div>Property Card</div>;
+const PropertyCard = ({ property }) => {
+  const navigate = useNavigate();
+  return (
+    <Card>
+      <Top>
+        <Image src={property?.img} />
+        <Menu>
+          <MenuItem>
+            <FavoriteBorder sx={{ fonSize: "20px" }} />
+          </MenuItem>
+        </Menu>
+        <Rate>
+          <Rating value={property?.rating} sx={{ fontSize: "14px" }} />
+        </Rate>
+      </Top>
+      <Details onClick={()=> navigate (`/properties/${property?._id}`)}>
+        <Title>{property?.title}</Title>
+        <Desc>{property?.desc}</Desc>
+        <Location>{property?.location}</Location>
+        <Price>
+          ${property?.price.org}
+          <Strike>${property?.price?.mrp}</Strike>
+          <Percent>${property?.price?.off}% off</Percent>
+        </Price>
+      </Details>
+    </Card>);
 };
 
 export default PropertyCard;
